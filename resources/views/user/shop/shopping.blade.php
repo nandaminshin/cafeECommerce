@@ -206,7 +206,6 @@
             });
             $('.add-cart').each(function () {
                 var current_id;
-                var message;
                 $(this).on('click', function () {
                     let id = $(this).val();
 

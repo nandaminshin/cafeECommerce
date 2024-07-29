@@ -328,7 +328,6 @@
                             </div>
                             <div class="product__item__text">
                                 <h6>{{ $item->name }}</h6>
-                                <a href="#" class="add-cart">+ Add To Cart</a>
                                 <div class="rating">
                                     <i class="fa fa-star-o"></i>
                                     <i class="fa fa-star-o"></i>

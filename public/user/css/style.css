@@ -2729,6 +2729,7 @@ ol {
 
 .checkout__order__products {
     font-size: 16px;
+    font-weight: bolder;
     color: #111111;
     overflow: hidden;
     margin-bottom: 18px;

@@ -35,9 +35,10 @@
 
     <!-- Shopping Cart Section Begin -->
     <section class="shopping-cart spad">
+        <input type="hidden" class="user-id" value="{{ Auth::user()->id }}" />
         <div class="container">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-8 main-cart">
                     <div class="shopping__cart__table">
                         @if (count($cart) > 0)
                             <table>
@@ -77,7 +78,7 @@
                                                 <div
                                                     class="product__cart__item__text"
                                                 >
-                                                    <h6>
+                                                    <h6 class="item_name">
                                                         {{ $cart_item->name }}
                                                     </h6>
                                                     <h5 class="item_price">
@@ -93,6 +94,7 @@
                                                             type="number"
                                                             value="1"
                                                             min="1"
+                                                            data-item="{{ $cart_item->name }}"
                                                         />
                                                     </div>
                                                 </div>
@@ -110,7 +112,7 @@
                                 </tbody>
                             </table>
                         @else
-                            <h2 class="text-black p-5">
+                            <h2 class="text-black pt-5 pb-5">
                                 There is no item on the cart.
                             </h2>
                         @endif
@@ -120,6 +122,16 @@
                             <div class="continue__btn">
                                 <a href="{{ route("user#shop") }}">
                                     Continue Shopping
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="continue__btn">
+                                <a
+                                    href="{{ route("user#order_list", Auth::user()->id) }}"
+                                >
+                                    See Your Orders
                                 </a>
                             </div>
                         </div>
@@ -137,13 +149,25 @@
                                     </span>
                                 </li>
                             </ul>
-                            <a href="#" class="primary-btn">
+
+                            <a href="#" class="primary-btn order-now">
                                 Order Now &nbsp;
                                 <i class="fa-solid fa-bell-concierge"></i>
                             </a>
                         </div>
                     </div>
                 @endif
+            </div>
+        </div>
+
+        {{-- item add modal --}}
+        <div
+            id="itemAddedModal"
+            class="add_message_modal"
+            style="display: none"
+        >
+            <div class="add_message_modal_content">
+                <p class="add_cart_message">Successfully Ordered</p>
             </div>
         </div>
     </section>
@@ -153,33 +177,49 @@
 @section("script_code")
     <script>
         $(document).ready(function () {
-            let navCart = parseInt($('.cart-amount').text());
+            var navCart = parseInt($('.cart-amount').text());
+            var form_item = {};
+            var form_total = [];
             function updateTotalPrice() {
                 var total = 0;
                 $('.cart__price').each(function () {
                     total += parseFloat($(this).text());
                 });
                 $('.total_price_in_cart').text(total.toFixed(2) + ' Kyats');
+                $('#total-cost').val(total);
+                form_total = [total];
             }
 
             $('.item_row').each(function () {
                 var row = $(this); // Cache the current row
+                var id = row.data('id');
+                var name = row.find('.item_name').text().trim();
                 var price = parseFloat(row.find('.item_price').text());
                 var quantity = parseFloat(row.find('.qty').val());
 
+                form_item[id] = {
+                    name: name,
+                    quantity: quantity,
+                };
                 // Set the initial cart price
                 row.find('.cart__price').text(price * quantity);
 
                 // Attach a change event handler to the quantity input within the current row
                 row.find('.qty').change(function () {
                     var newQuantity = parseFloat($(this).val());
+                    var item_name = $(this).data('item');
                     row.find('.cart__price').text(price * newQuantity);
                     updateTotalPrice();
+                    form_item[id] = {
+                        name: name,
+                        quantity: newQuantity,
+                    };
                 });
 
                 row.find('.remove-btn').on('click', function () {
                     var itemId = row.data('id');
                     row.remove();
+                    delete form_item[itemId];
 
                     $.ajax({
                         method: 'post',
@@ -204,6 +244,40 @@
                         },
                     });
                 });
+            });
+
+            $('.order-now').on('click', function () {
+                var user_id = $('.user-id').val();
+                $.ajax({
+                    method: 'post',
+                    type: 'json',
+                    url: '/customer/order',
+                    data: {
+                        user_id: user_id,
+                        items: form_item,
+                        total: form_total,
+                        _token: '{{ csrf_token() }}',
+                    },
+                    success: function (response) {
+                        console.log(response['message']);
+                        $('.item_row').each(function () {
+                            $(this).remove();
+                            $('#itemAddedModal').fadeIn();
+                            // Hide the modal after 1 second
+                            setTimeout(function () {
+                                $('#itemAddedModal').fadeOut();
+                            }, 1000);
+
+                            let newNavCart = 0;
+                            $('.cart-amount')
+                                .text(newNavCart)
+                                .css('opacity', '0');
+                            navCart = newNavCart;
+                        });
+                    },
+                });
+
+                $(this).css('pointer-events', 'none');
             });
 
             updateTotalPrice();

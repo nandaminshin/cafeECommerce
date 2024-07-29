@@ -57,6 +57,9 @@ Route::group(['prefix' => 'customer', 'middleware' => UserMiddleware::class], fu
         Route::get('/cart', [ShopController::class, 'cartPage'])->name('user#cart');
         Route::post('/add-to-cart', [ShopController::class, 'addToCart']);
         Route::post('/remove-item', [ShopController::class, 'removeItem']);
+        Route::post('/order', [ShopController::class, 'order']);
+        Route::get('/order-list/{id}', [ShopController::class, 'orderList'])->name('user#order_list');
+        Route::post('/delete-order/{id}', [ShopController::class, 'deleteOrder'])->name('user#delete_order');
     });
 
     Route::get('/contact', [ShopController::class, 'contactPage'])->name('user#contact');

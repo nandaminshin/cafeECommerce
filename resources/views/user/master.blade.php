@@ -99,9 +99,22 @@
                 <li style="list-style-type: none;" class="m-3"><a href="" class="mobile-nav">Blog</a></li>
                 <li style="list-style-type: none;" class="m-3"><a href="" class="mobile-nav">Contact</a></li>
                 @if (Auth::check())
-                <li style="list-style-type: none;" class="m-3"><a href="{{ route('user#cart') }}" class="mobile-nav"><i class="fa-solid fa-basket-shopping"></i>@if (count($cart) > 0)
-                    <span class="cart-amount"></span>
-                @endif</a></li>
+                <li style="list-style-type: none;" class="m-3"><a href="{{ route('user#cart') }}" class="mobile-nav">
+                    <div class="d-flex">
+                        <div>
+                            <i class="fa-solid fa-basket-shopping"></i>
+                        </div>
+                        {{-- @if (count($cart) > 0)
+                        <div>
+                            <span class="cart-amount text-white">{{ count($cart) }}</span>
+                        </div>
+                        @else
+                        <div>
+                            <span class="cart-amount" style="opacity: 0">0</span>
+                        </div>
+                        @endif --}}
+                    </div>
+                </a></li>
                 @endif
             </ul>
         </div>
@@ -333,7 +346,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-qFOQ9YFAeGj1gDOuUD61g3D+tLDv3u1ECYWqT82WQoaWrOhAY+5mRMTTVsQdWutbA5FORCnkEPEgU0OF8IzGvA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <<script>
+    <script>
         // Get modal elements
         var modal = document.getElementById('confirmationModal');
         var closeBtn = document.getElementsByClassName('close')[0];
