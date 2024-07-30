@@ -9,10 +9,12 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Middleware\LoadCategoryData;
 use App\Models\Product;
+use SebastianBergmann\CodeCoverage\Report\Html\CustomCssFile;
 
 Route::get('/', function () {
     return view('welcome');
@@ -62,5 +64,9 @@ Route::group(['prefix' => 'customer', 'middleware' => UserMiddleware::class], fu
         Route::post('/delete-order/{id}', [ShopController::class, 'deleteOrder'])->name('user#delete_order');
     });
 
-    Route::get('/contact', [ShopController::class, 'contactPage'])->name('user#contact');
+    Route::get('setting', [CustomerController::class, 'settingPage'])->name('user#setting');
+    Route::post('/update/save', [CustomerController::class, 'update'])->name('user#update_save');
+    Route::post('/delete-account/{id}', [CustomerController::class, 'deleteAccount'])->name('user#delete_account');
+    Route::get('/change-password', [CustomerController::class, 'changePasswordPage'])->name('user#change_password');
+    Route::post('/change-password/save', [CustomerController::class, 'changePasswordSave'])->name('user#change_password_save');
 });

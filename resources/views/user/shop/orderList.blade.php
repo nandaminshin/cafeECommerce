@@ -1,7 +1,7 @@
 @extends("user.master")
 
 @section("title")
-    Cart
+    Order List
 @endsection
 
 @section("active_cart")
@@ -19,7 +19,8 @@
                         <div class="breadcrumb__links">
                             <a href="./index.html">Home</a>
                             <a href="./shop.html">Shop</a>
-                            <span>Check Out</span>
+                            <a href="./shop.html">Shopping Cart</a>
+                            <span>Order List</span>
                         </div>
                     </div>
                 </div>
@@ -31,10 +32,10 @@
     <!-- Checkout Section Begin -->
     <section class="checkout spad">
         <div class="container">
-            <h5 class="text-muted pb-3">
+            <h6 class="coupon__code">
                 Once the order is successfully delivered, the order list will be
                 automatically deleted.
-            </h5>
+            </h6>
             <div class="row">
                 @foreach ($orders as $order)
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pt-2 pb-5">

@@ -1,6 +1,6 @@
 @php
-    $cart = session()->get("cart", []);
-    $cart_item;
+$cart = session()->get("cart", []);
+$cart_item;
 @endphp
 
 <!DOCTYPE html>
@@ -94,27 +94,29 @@
         @endif
         <div class="offcanvas__nav__option">
             <ul>
-                <li style="list-style-type: none;" class="m-3"><a href="{{ route('home') }}" class="mobile-nav">Home</a></li>
-                <li style="list-style-type: none;" class="m-3"><a href="{{ route('user#shop') }}" class="mobile-nav">Shop</a></li>
+                <li style="list-style-type: none;" class="m-3"><a href="{{ route('home') }}" class="mobile-nav">Home</a>
+                </li>
+                <li style="list-style-type: none;" class="m-3"><a href="{{ route('user#shop') }}"
+                        class="mobile-nav">Shop</a></li>
                 <li style="list-style-type: none;" class="m-3"><a href="" class="mobile-nav">Blog</a></li>
                 <li style="list-style-type: none;" class="m-3"><a href="" class="mobile-nav">Contact</a></li>
                 @if (Auth::check())
                 <li style="list-style-type: none;" class="m-3"><a href="{{ route('user#cart') }}" class="mobile-nav">
-                    <div class="d-flex">
-                        <div>
-                            <i class="fa-solid fa-basket-shopping"></i>
+                        <div class="d-flex">
+                            <div>
+                                <i class="fa-solid fa-basket-shopping"></i>
+                            </div>
+                            {{-- @if (count($cart) > 0)
+                            <div>
+                                <span class="cart-amount text-white">{{ count($cart) }}</span>
+                            </div>
+                            @else
+                            <div>
+                                <span class="cart-amount" style="opacity: 0">0</span>
+                            </div>
+                            @endif --}}
                         </div>
-                        {{-- @if (count($cart) > 0)
-                        <div>
-                            <span class="cart-amount text-white">{{ count($cart) }}</span>
-                        </div>
-                        @else
-                        <div>
-                            <span class="cart-amount" style="opacity: 0">0</span>
-                        </div>
-                        @endif --}}
-                    </div>
-                </a></li>
+                    </a></li>
                 @endif
             </ul>
         </div>
@@ -189,24 +191,24 @@
                                 </ul>
                             </li> --}}
                             <li @yield('active_blog')><a href="./blog.html">Blog</a></li>
-                            <li @yield('active_contact')><a href="{{ route('user#contact') }}">Contacts</a></li>
+                            <li @yield('active_contact')><a href="">Contacts</a></li>
                             @if (Auth::check())
                             <li @yield('active_cart')><a href="{{ route('user#cart') }}">
-                                <div class="d-flex">
-                                    <div>
-                                        <i class="fa-solid fa-basket-shopping"></i>
+                                    <div class="d-flex">
+                                        <div>
+                                            <i class="fa-solid fa-basket-shopping"></i>
+                                        </div>
+                                        @if (count($cart) > 0)
+                                        <div>
+                                            <span class="cart-amount">{{ count($cart) }}</span>
+                                        </div>
+                                        @else
+                                        <div>
+                                            <span class="cart-amount" style="opacity: 0">0</span>
+                                        </div>
+                                        @endif
                                     </div>
-                                    @if (count($cart) > 0)
-                                    <div>
-                                        <span class="cart-amount">{{ count($cart) }}</span>
-                                    </div>
-                                    @else
-                                    <div>
-                                        <span class="cart-amount" style="opacity: 0">0</span>
-                                    </div>
-                                    @endif
-                                </div>
-                            </a></li>
+                                </a></li>
                             @endif
                         </ul>
                     </nav>
@@ -215,13 +217,14 @@
                 <div class="col-lg-3 col-md-3">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li @yield('active_pages')><a href="#"><img
-                                        src="@if(Auth::user()->image == null) {{ asset('user/img/default_user2.png') }} @endif {{ Auth::user()->image }} "
+                            <li @yield('active_account')><a href="#"><img
+                                        src="@if(Auth::user()->image == null) {{ asset('user/img/default_user2.png') }} @else {{ asset('storage/'. Auth::user()->image) }} @endif"
                                         alt="" width="45" height="45" style="border-radius: 50%">
                                     &nbsp; {{ Auth::user()->name }}
                                 </a>
                                 <ul class="dropdown">
-                                    <li><a href="./about.html"><i class="fa-solid fa-gear"></i> &nbsp; Setting</a></li>
+                                    <li><a href="{{ route('user#setting') }}"><i class="fa-solid fa-gear"></i> &nbsp;
+                                            Setting</a></li>
                                     <li><a href="#" class="logout-button"><i class="fa-solid fa-right-from-bracket"></i>
                                             &nbsp; Logout</a></li>
                                 </ul>
@@ -342,7 +345,6 @@
     <script src="{{ asset('user/js/mixitup.min.js') }}"></script>
     <script src="{{ asset('user/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('user/js/main.js') }}"></script>
-    //jquery
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-qFOQ9YFAeGj1gDOuUD61g3D+tLDv3u1ECYWqT82WQoaWrOhAY+5mRMTTVsQdWutbA5FORCnkEPEgU0OF8IzGvA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -383,8 +385,8 @@
         modal.style.display = 'none';
         }
         });
-        </script>
+    </script>
 
-        @yield('script_code')
+    @yield('script_code')
 
 </html>
