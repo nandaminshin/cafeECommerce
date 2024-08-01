@@ -173,7 +173,7 @@
                                     </a>
                                 </li>
                                 <li class="menu-item @yield('active_user3')">
-                                    <a href="pages-account-settings-notifications.html" class="menu-link">
+                                    <a href="{{ route('admin#user_management_page') }}" class="menu-link">
                                         <div data-i18n="Notifications" class="d-flex">User Management</div>
                                     </a>
                                 </li>
@@ -202,85 +202,85 @@
                 <!-- / Menu -->
                 <!-- Layout container -->
                 <div class="layout-page">
-                    <nav
-            class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
-            id="layout-navbar"
-          >
+                <nav
+                class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+                id="layout-navbar"
+                >
             <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
                 <i class="bx bx-menu bx-sm"></i>
-              </a>
+                </a>
             </div>
 
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-              <!-- Header -->
-              <div class="navbar-nav align-items-center">
+                <!-- Header -->
+                <div class="navbar-nav align-items-center">
                 <div class="nav-item align-items-center">
-                  @yield('header')
+                    @yield('header')
                 </div>
-              </div>
-              <!-- /Header-->
+                </div>
+                <!-- /Header-->
 
-              <ul class="navbar-nav flex-row align-items-center ms-auto">
+                <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- Place this tag where you want the button to render. -->
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                     <a class="nav-link dropdown-toggle hide-arrow" href="" data-bs-toggle="dropdown">
-                      <div class="avatar avatar-online">
+                        <div class="avatar avatar-online">
                         @if (Auth::user()->image == null)
-                        <img src="{{ asset('admin/assets/img/avatars/1.png') }}" alt class="w-px-40 h-auto rounded-circle" />
+                        <img src="{{ asset('admin/assets/img/avatars/1.png') }}" style="border-radius: 50%;" />
                         @else
-                        <img src="{{ asset('storage/' . Auth::user()->image) }}" alt="">
+                        <img src="{{ asset('storage/' . Auth::user()->image) }}" alt="" style="border-radius: 50%">
                         @endif
-                      </div>
+                        </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                      <li>
+                        <li>
                         <a class="dropdown-item" href="#">
-                          <div class="d-flex">
+                            <div class="d-flex">
                             <div class="flex-shrink-0 me-3">
-                              <div class="avatar avatar-online">
+                                <div class="avatar avatar-online">
                                 @if (Auth::user()->image == null)
                                 <img src="{{ asset('admin/assets/img/avatars/1.png') }}" alt class="w-px-40 h-auto rounded-circle" />
                                 @else
                                 <img src="{{ asset('storage/' . Auth::user()->image) }}" alt="">
                                 @endif
-                              </div>
+                                </div>
                             </div>
                             <div class="flex-grow-1">
-                              <span class="fw-semibold d-block">{{ Auth::user()->name }}</span>
-                              <small class="text-muted">Admin</small>
+                                <span class="fw-semibold d-block">{{ Auth::user()->name }}</span>
+                                <small class="text-muted">Admin</small>
                             </div>
-                          </div>
+                            </div>
                         </a>
-                      </li>
-                      <li>
+                        </li>
+                        <li>
                         <div class="dropdown-divider"></div>
-                      </li>
-                      <li>
+                        </li>
+                        <li>
                         <a class="dropdown-item" href="{{ route('admin#setting') }}">
-                          <i class="bx bx-cog me-2"></i>
-                          <span class="align-middle">Settings</span>
+                            <i class="bx bx-cog me-2"></i>
+                            <span class="align-middle">Settings</span>
                         </a>
-                      </li>
-                      <li>
+                        </li>
+                        <li>
                         <div class="dropdown-divider"></div>
-                      </li>
-                      <li>
-                        <form action="{{ route('logout') }}" method="post">
+                        </li>
+                        <li>
+                        <form action="{{ route('logout') }}" method="post" hidden id="logout-form">
                         @csrf
-                        <button class="dropdown-item" href="auth-login-basic.html">
+                        </form>
+                        <button class="dropdown-item logout-btn" href="auth-login-basic.html">
                             <i class="bx bx-power-off me-2"></i>
                             <span class="align-middle">Log Out</span>
                         </button>
-                        </form>
-                      </li>
+                        </li>
                     </ul>
                 </li>
                 <!--/ User -->
-              </ul>
+                </ul>
             </div>
-          </nav>
+            </nav>
                     <!-- Content wrapper -->
                     <div class="content-wrapper">
                         @yield('content')
@@ -292,9 +292,28 @@
             <!-- Overlay -->
             <div class="layout-overlay layout-menu-toggle"></div>
         </div>
+
+        {{-- modal --}}
+        <div id="logoutConfirmationModal" class="modal">
+            <div class="modal-content">
+                <button class="crossX" style="background: none; border: none">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <p>Are you sure you want to logout?</p>
+                <div class="modal-buttons">
+                    <button id="confirm-logout">Yes</button>
+                    <button id="cancel-logout">No</button>
+                </div>
+            </div>
+        </div>
         <!-- / Layout wrapper -->
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+        {{-- jQuery --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-qFOQ9YFAeGj1gDOuUD61g3D+tLDv3u1ECYWqT82WQoaWrOhAY+5mRMTTVsQdWutbA5FORCnkEPEgU0OF8IzGvA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
         <!-- Core JS -->
         <!-- build:js assets/vendor/js/core.js -->
@@ -312,5 +331,45 @@
         <script src="{{ asset('admin/assets/js/dashboards-analytics.js') }}"></script>
         <!-- Place this tag in your head or just before your close body tag. -->
         <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                var logoutModal = $('#logoutConfirmationModal');
+                var deleteCloseBtn = $('.crossX');
+                var confirmBtn = $('#confirm-logout');
+                var cancelBtn = $('#cancel-logout');
+
+                // Show modal when logout button is clicked
+                $('.logout-btn').on('click', function (event) {
+                    event.preventDefault();
+                    logoutModal.show();
+                });
+
+                // Hide modal when 'x' is clicked
+                deleteCloseBtn.on('click', function () {
+                    logoutModal.hide();
+                });
+
+                // Hide modal when cancel button is clicked
+                cancelBtn.on('click', function () {
+                    logoutModal.hide();
+                });
+
+                // Submit the form when confirm button is clicked
+                confirmBtn.on('click', function () {
+                    $('#logout-form').submit();
+                });
+
+                // Hide modal if user clicks outside of the modal content
+                $(window).on('click', function (event) {
+                    if ($(event.target).is(logoutModal)) {
+                        logoutModal.hide();
+                    }
+                });
+            });
+        </script>
+
+
+        @yield('script_code')
     </body>
 </html>

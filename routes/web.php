@@ -16,10 +16,7 @@ use App\Http\Middleware\LoadCategoryData;
 use App\Models\Product;
 use SebastianBergmann\CodeCoverage\Report\Html\CustomCssFile;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', [HomeController::class, 'home']);
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 
 Route::middleware([
@@ -37,16 +34,24 @@ Route::middleware([
         Route::get('/createProduct', [ProductController::class, 'productCreatePage'])->name('admin#create_product');
         Route::post('/createNewProduct', [ProductController::class, 'createNewProduct'])->name('admin#create_new_product');
         Route::get('/product/edit/{id}/{category_id}', [ProductController::class, 'productEditPage'])->name('admin#product_edit');
-        Route::get('/product/delete/{id}/{category_id}', [ProductController::class, 'productDelete'])->name('admin#product_delete');
+        Route::post('/product/delete/{id}/{category_id}', [ProductController::class, 'productDelete'])->name('admin#product_delete');
         Route::post('/product/edit/save/{caetgory_id}', [ProductController::class, 'productEditSave'])->name('admin#product_edit_save');
         Route::get('/editCategory/{id}', [CategoryController::class, 'categoryEditPage'])->name('admin#edit_category');
         Route::post('/editCategory/save', [CategoryController::class, 'categoryEditSave'])->name('admin#category_edit_save');
-        Route::get('/category/delete/{id}', [CategoryController::class, 'categoryDelete'])->name('admin#category_delete');
+        Route::post('/category/delete/{id}', [CategoryController::class, 'categoryDelete'])->name('admin#category_delete');
         Route::get('/setting', [AdminController::class, 'settingPage'])->name('admin#setting');
         Route::post('/settingSave', [AdminController::class, 'settingSave'])->name('admin#setting_save');
         Route::get('/setting/changePassword', [AdminController::class, 'changePasswordPage'])->name('admin#change_password');
         Route::post('/setting/changePasswordSave', [AdminController::class, 'changePasswordSave'])->name('admin#change_password_save');
-        Route::get('/adminManagement/{id}', [UserManagementController::class, 'adminManagementPage'])->name('admin#admin_management_page');
+        Route::post('/delete-account/{id}', [AdminController::class, 'deleteAccount'])->name('admin#delete_account');
+        Route::get('/admin-management/{id}', [UserManagementController::class, 'adminManagementPage'])->name('admin#admin_management_page');
+        Route::post('/admin-management/remove/{id}/{current_admin_id}', [UserManagementController::class, 'removeAdmin'])->name('admin#remove_admin');
+        Route::get('/add-admin', [UserManagementController::class, 'addAdminPage'])->name('admin#add_new_admin');
+        Route::post('/add-admin-save/{id}', [UserManagementController::class, 'addAdminSave'])->name('admin#add_admin_save');
+        Route::get('/user-management', [UserManagementController::class, 'userManagementPage'])->name('admin#user_management_page');
+
+        Route::get('/admin-detail/{id}', [UserManagementController::class, 'adminDetailPage'])->name('admin#admin_detail');
+        Route::get('/user-detail/{id}', [UserManagementController::class, 'userDetailPage'])->name('admin#user_detail');
     });
 });
 
@@ -64,7 +69,7 @@ Route::group(['prefix' => 'customer', 'middleware' => UserMiddleware::class], fu
         Route::post('/delete-order/{id}', [ShopController::class, 'deleteOrder'])->name('user#delete_order');
     });
 
-    Route::get('setting', [CustomerController::class, 'settingPage'])->name('user#setting');
+    Route::get('/setting', [CustomerController::class, 'settingPage'])->name('user#setting');
     Route::post('/update/save', [CustomerController::class, 'update'])->name('user#update_save');
     Route::post('/delete-account/{id}', [CustomerController::class, 'deleteAccount'])->name('user#delete_account');
     Route::get('/change-password', [CustomerController::class, 'changePasswordPage'])->name('user#change_password');

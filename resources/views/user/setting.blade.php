@@ -10,27 +10,26 @@ class="active"
 
 @section("content")
 
-<div class="py-3">
-  @livewire('alertMessage')
-</div>
-
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-option">
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
         <div class="breadcrumb__text">
-          <h4>Check Out</h4>
+          <h4>Setting</h4>
           <div class="breadcrumb__links">
             <a href="./index.html">Home</a>
-            <a href="./shop.html">Shop</a>
-            <span>Check Out</span>
+            <span>Setting</span>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<div class="py-3">
+  @livewire('alertMessage')
+</div>
 
 <!-- Breadcrumb Section End -->
 
@@ -45,6 +44,7 @@ class="active"
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
           <form action="{{ route('user#delete_account', Auth::user()->id) }}" method="post" class="delete-account-form">
             @csrf
+            <input type="password" name="password" class="user-password" value="0" hidden>
             <div>
               <div class="checkout__order">
                 <h4 class="order__title">Detail info</h4>
@@ -202,6 +202,9 @@ class="active"
       <i class="fa-solid fa-xmark"></i>
     </button>
     <p>Are you sure you want to delete this account?</p>
+    <h5>Input Your Password</h5>
+    <br>
+    <input type="password" class="input-password">
     <div class="modal-buttons">
       <button id="confirm-delete">Yes</button>
       <button id="cancel-delete">No</button>
@@ -214,88 +217,92 @@ class="active"
 @section("script_code")
 <script>
   $(document).ready(function () {
-            const $yesRadio = $('#yes');
-            const $noRadio = $('#no');
-            const $uploadDiv = $('#uploadDiv');
+    $('.toast').toast('show')
 
-            $yesRadio.on('change', function () {
-                if ($yesRadio.is(':checked')) {
-                    $uploadDiv.show();
-                }
-            });
+    const $yesRadio = $('#yes');
+    const $noRadio = $('#no');
+    const $uploadDiv = $('#uploadDiv');
 
-            $noRadio.on('change', function () {
-                if ($noRadio.is(':checked')) {
-                    $uploadDiv.hide();
-                }
-            });
+    $yesRadio.on('change', function () {
+        if ($yesRadio.is(':checked')) {
+            $uploadDiv.show();
+        }
+    });
 
-            // Get modal elements
-            var $modal = $('#updateConfirmationModal');
-            var $closeBtn = $('.crossX');
-            var $confirmBtn = $('#confirm-update');
-            var $cancelBtn = $('#cancel-update');
+    $noRadio.on('change', function () {
+        if ($noRadio.is(':checked')) {
+            $uploadDiv.hide();
+        }
+    });
 
-            // Show modal when logout button is clicked
-            $('.save-changes').on('click', function (event) {
-                event.preventDefault();
-                $modal.show();
-            });
+    // Get modal elements
+    var $modal = $('#updateConfirmationModal');
+    var $closeBtn = $('.crossX');
+    var $confirmBtn = $('#confirm-update');
+    var $cancelBtn = $('#cancel-update');
 
-            // Hide modal when 'x' is clicked
-            $closeBtn.on('click', function () {
-                $modal.hide();
-            });
+    // Show modal when logout button is clicked
+    $('.save-changes').on('click', function (event) {
+        event.preventDefault();
+        $modal.show();
+    });
 
-            // Hide modal when cancel button is clicked
-            $cancelBtn.on('click', function () {
-                $modal.hide();
-            });
+    // Hide modal when 'x' is clicked
+    $closeBtn.on('click', function () {
+        $modal.hide();
+    });
 
-            // Submit the form when confirm button is clicked
-            $confirmBtn.on('click', function () {
-                $('.edit-form').submit();
-            });
+    // Hide modal when cancel button is clicked
+    $cancelBtn.on('click', function () {
+        $modal.hide();
+    });
 
-            // Hide modal if user clicks outside of the modal content
-            $(window).on('click', function (event) {
-                if ($(event.target).is($modal)) {
-                    $modal.hide();
-                }
-            });
+    // Submit the form when confirm button is clicked
+    $confirmBtn.on('click', function () {
+        $('.edit-form').submit();
+    });
 
-            var $deleteModal = $('#deleteConfirmationModal');
-            var $deleteCloseBtn = $('.crossX');
-            var $confirmBtn = $('#confirm-delete');
-            var $cancelBtn = $('#cancel-delete');
+    // Hide modal if user clicks outside of the modal content
+    $(window).on('click', function (event) {
+        if ($(event.target).is($modal)) {
+            $modal.hide();
+        }
+    });
 
-            // Show modal when logout button is clicked
-            $('.delete-account-btn').on('click', function (event) {
-                event.preventDefault();
-                $deleteModal.show();
-            });
+    var $deleteModal = $('#deleteConfirmationModal');
+    var $deleteCloseBtn = $('.crossX');
+    var $confirmBtn = $('#confirm-delete');
+    var $cancelBtn = $('#cancel-delete');
 
-            // Hide modal when 'x' is clicked
-            $closeBtn.on('click', function () {
-                $deleteModal.hide();
-            });
+    // Show modal when logout button is clicked
+    $('.delete-account-btn').on('click', function (event) {
+        event.preventDefault();
+        $deleteModal.show();
+    });
 
-            // Hide modal when cancel button is clicked
-            $cancelBtn.on('click', function () {
-                $deleteModal.hide();
-            });
+    // Hide modal when 'x' is clicked
+    $deleteCloseBtn.on('click', function () {
+        $deleteModal.hide();
+    });
 
-            // Submit the form when confirm button is clicked
-            $confirmBtn.on('click', function () {
-                $('.delete-account-form').submit();
-            });
+    // Hide modal when cancel button is clicked
+    $cancelBtn.on('click', function () {
+        $deleteModal.hide();
+    });
 
-            // Hide modal if user clicks outside of the modal content
-            $(window).on('click', function (event) {
-                if ($(event.target).is($modal)) {
-                    $modal.hide();
-                }
-            });
+    // Submit the form when confirm button is clicked
+    $confirmBtn.on('click', function () {
+        var inputPassword = $('.input-password').val();
+        $('.user-password').val(inputPassword);
+        $('.delete-account-form').submit();
+    });
+
+    // Hide modal if user clicks outside of the modal content
+    $(window).on('click', function (event) {
+        if ($(event.target).is($deleteModal)) {
+            $deleteModal.hide();
+        }
+    });
         });
 </script>
 @endsection

@@ -17,11 +17,13 @@ class ProductController extends Controller
         return view('admin.product.product', compact('category_data'));
     }
 
+
     public function productCreatePage()
     {
         $category = Category::select('id', 'name')->get();
         return view('admin.product.createProduct', compact('category'));
     }
+
 
     public function createNewProduct(Request $request)
     {
@@ -49,6 +51,7 @@ class ProductController extends Controller
         return redirect()->route('admin#product')->with(['product_create_message' => 'A new product created!', 'created_product_name' => $request->name, 'created_product_category' => $category->name]);
     }
 
+
     public function productDetail($id)
     {
         $data = Product::where('category_id', $id)->orderBy('id', 'desc')->get();
@@ -62,6 +65,7 @@ class ProductController extends Controller
         $category_id = $category_id;
         return view('admin.product.editProduct', compact('data', 'category_id'));
     }
+
 
     public function productEditSave(Request $request, $category_id)
     {
@@ -98,6 +102,7 @@ class ProductController extends Controller
         return redirect()->route('admin#product_detail', $category_id)->with(['product_update_message' => 'A product updated!', 'updated_product_name' => $request->name]);
     }
 
+
     public function productDelete($id, $category_id)
     {
         $image = Product::where('id', $id)->value('image');
@@ -108,6 +113,7 @@ class ProductController extends Controller
         Category::where('id', $category_id)->update(['quantity' => DB::raw('quantity - 1')]);
         return redirect()->route('admin#product_detail', $category_id)->with(['product_delete_message' => 'A product deleted!', 'deleted_product_name' => $deleted_product_name]);
     }
+
 
     public function storeImage(Request $request)
     {

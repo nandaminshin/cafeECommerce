@@ -5,14 +5,14 @@ Admin Management
 @endsection
 
 @section('header')
-<h4 class="fw-bold pt-3"><span class="text-muted fw-light">Admin /</span> Admin Management</h4>
+<h4 class="fw-bold pt-3"><span class="text-muted fw-light">Admin /</span> User Management</h4>
 @endsection
 
 @section('active_user1')
 active open
 @endsection
 
-@section('active_user2')
+@section('active_user3')
 active
 @endsection
 
@@ -22,20 +22,32 @@ active
     @livewire('alertMessage')
 </div>
 
+
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
         <div class="card col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="d-flex">
-                <h5 class="card-header">Admin table</h5>
-                <a href="{{ route('admin#add_new_admin') }}" class="card-header">
+                <h5 class="card-header">User table</h5>
+                <a href="{{ route('admin#add_new_admin') }}" class="card-header me-5">
                     <button type="button" class="btn btn-sm rounded-pill btn-outline-primary"><i
                             class="fa-solid fa-user-plus"></i>&nbsp;&nbsp;&nbsp; Add Admin</button>
                 </a>
+                <div class="mt-3 ms-5">
+                    <form action="{{ route('admin#user_management_page') }}" method="get">
+                        @csrf
+                        <div class="d-flex">
+                            <input type="text" name="key" class="form-control" width="160px"
+                                placeholder="Search username..." value="{{ request('key') }}">
+                            <button type="submit" style="background: none; border: none;"><i
+                                    class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                    </form>
+                </div>
             </div>
 
             <div class="table-responsive text-nowrap">
                 @if (count($data) == 0)
-                <div class="alert alert-primary" role="alert">There is no product here!</div>
+                <div class="alert alert-primary" role="alert">There is no user here!</div>
                 @else
                 <table class="table">
                     <thead>
@@ -72,7 +84,7 @@ active
                                     @csrf
                                     <input type="password" class="admin-password" name="password" value="0">
                                 </form>
-                                <a href="{{ route('admin#admin_detail', $item->id) }}">
+                                <a href="{{ route('admin#user_detail', $item->id) }}">
                                     <button type="button" class="btn btn-sm rounded-pill btn-outline-primary">
                                         <i class="fa-solid fa-file-lines"></i>&nbsp; Details
                                     </button>
@@ -88,11 +100,11 @@ active
                                             <i class="fa-solid fa-xmark"></i>
                                         </button>
                                         <p>Are you sure you want to remove <br />
-                                            this admin? <br />
+                                            this user? <br />
                                             He will still be a normal user<br />
                                             after this action</p> <br />
                                         <br>
-                                        <h5>Input your password</h5>
+                                        <h5>Input your password : </h5>
                                         <input type="password" class="form-info input-password">
                                         <div class="modal-buttons">
                                             <button id="confirm-remove">Remove</button>
@@ -110,8 +122,7 @@ active
         </div>
     </div>
 </div>
-
-
+{{ $data->links() }}
 
 @endsection
 

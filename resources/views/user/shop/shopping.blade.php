@@ -39,8 +39,8 @@ class="active"
             <div class="col-lg-3">
                 <div class="shop__sidebar">
                     <div class="shop__sidebar__search">
-                        <form action="#">
-                            <input type="text" placeholder="Search..." />
+                        <form action="{{ route('user#shop') }}" method="get">
+                            <input type="text" name="key" placeholder="Search..." value="{{ request('key') }}" />
                             <button type="submit">
                                 <span class="icon_search"></span>
                             </button>
@@ -139,16 +139,8 @@ class="active"
                     </div>
                     @endforeach
                 </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="product__pagination">
-                            <a class="active" href="#">1</a>
-                            <a href="#">2</a>
-                            <a href="#">3</a>
-                            <span>...</span>
-                            <a href="#">21</a>
-                        </div>
-                    </div>
+                <div class="p-4 align-center">
+                    {{ $product_data->links() }}
                 </div>
             </div>
         </div>

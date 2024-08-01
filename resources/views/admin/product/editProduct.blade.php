@@ -34,7 +34,7 @@ active
                     <h5 class="mb-0">Edit {{ $data->name }}</h5>
                 </div>
                 <div class="card-body">
-                    <form enctype="multipart/form-data" action="{{ route(" admin#product_edit_save", $category_id) }}"
+                    <form enctype="multipart/form-data" action="{{ route('admin#product_edit_save', $category_id) }}"
                         method="post">
                         @csrf
                         <input type="text" name="id" value="{{ $data->id }}" hidden />

@@ -14,14 +14,20 @@ class ShopController extends Controller
 {
     public function shopPage()
     {
-        $product_data = Product::get();
+        $product_data = Product::when(request('key'), function ($query) {
+            $query->where('name', 'like', '%' . request('key') . '%');
+        })->paginate(2);
+        $product_data->appends(request()->all());
         return view('user.shop.shopping', compact('product_data'));
     }
 
 
     public function shopPageByCategory($id)
     {
-        $product_data = Product::where('category_id', $id)->get();
+        $product_data = Product::when(request('key'), function ($query) {
+            $query->where('name', 'like', '%' . request('key') . '%');
+        })->where('category_id', $id)->paginate(2);
+        $product_data->appends(request()->all());
         return view('user.shop.shopping', compact('product_data'));
     }
 

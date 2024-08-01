@@ -51,18 +51,19 @@ class CustomerController extends Controller
             ]);
         }
 
-        logger()->info('status', [
-            'status' => 'Success'
-        ]);
-
         return redirect()->route('user#setting');
     }
 
 
-    public function deleteAccount($id)
+    public function deleteAccount($id, Request $request)
     {
-        User::where('id', $id)->delete();
-        return redirect()->route('home');
+        $user = User::where('id', $id)->first();
+        if (Hash::check($request->password, $user->password)) {
+            $user->delete();
+            return redirect()->route('home');
+        } else {
+            return back()->with(['user_account_delete_fail' => 'Failed to delete account! Wrong passwore']);
+        }
     }
 
 
@@ -83,9 +84,9 @@ class CustomerController extends Controller
         $db_old_password = $user->password;
         if (Hash::check($request->old_password, $db_old_password)) {
             $user->update(['password' => Hash::make($request->new_password)]);
-            return redirect()->route('user#setting')->with(['password_change_message' => 'Password changed successfully!']);
+            return redirect()->route('user#setting')->with(['user_password_change_message' => 'Password changed successfully!']);
         } else {
-            return back()->with(['password_change_fail' => 'The old password is incorrect']);
+            return back()->with(['user_password_change_fail' => 'The old password is incorrect']);
         }
     }
 

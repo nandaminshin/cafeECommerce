@@ -75,10 +75,19 @@ class AdminController
         } else {
             return back()->with(['password_change_fail' => 'The old password is incorrect']);
         }
-        
     }
 
 
+    public function deleteAccount($id, Request $request)
+    {
+        $user = User::where('id', $id)->first();
+        if (Hash::check($request->password, $user->password)) {
+            $user->delete();
+            return redirect()->route('home');
+        } else {
+            return back()->with(['admin_account_delete_fail' => 'Failed to delete account! Wrong password']);
+        }
+    }
 
 
 
