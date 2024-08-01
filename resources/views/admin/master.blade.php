@@ -9,7 +9,7 @@
 * Copyright ThemeSelection (https://themeselection.com)
 
 =========================================================
- -->
+-->
 <!-- beautify ignore:start -->
 <html
     lang="en"
@@ -179,13 +179,18 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="menu-item">
-                            <a href="cards-basic.html" class="menu-link">
+                        <li class="menu-item @yield('active_order1')">
+                            <a href="{{ route('admin#order_page') }}" class="menu-link">
                                 <i class="menu-icon tf-icons bx bx-collection"></i>
                                 <div data-i18n="Basic" class="d-flex">
                                     <span>Orders</span> 
+                                    
                                     <div class="ps-5">
-                                        <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">3</span>
+                                        @if (count($orders) > 0)
+                                        <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">{{ count($orders) }}</span>
+                                        @else
+                                        <span class="text-muted w-px-20 h-px-20">No order yet</span>
+                                        @endif
                                     </div>
 
                                 </div>
@@ -248,7 +253,7 @@
                                 </div>
                             </div>
                             <div class="flex-grow-1">
-                                <span class="fw-semibold d-block">{{ Auth::user()->name }}</span>
+                                <span class="fw-semibold d-block max-width-td2">{{ Auth::user()->name }}</span>
                                 <small class="text-muted">Admin</small>
                             </div>
                             </div>

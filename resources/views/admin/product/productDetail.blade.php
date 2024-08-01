@@ -60,12 +60,12 @@ active
                     <tbody class="table-border-bottom-0">
                         @foreach ($data as $item)
                         <tr class="data-row">
-                            <td><strong>{{ $item->name }}</strong></td>
+                            <td class="max-width-td2"><strong>{{ $item->name }}</strong></td>
                             <td>{{ $item->price }}</td>
                             <td>
                                 @if ($item->image == null)
                                 <img src="{{ asset('admin/assets/img/elements/18.jpg') }}" alt="" width="50"
-                                    height="40">
+                                    height="50">
                                 @else
                                 <img src="{{ asset('storage/' . $item->image) }}" alt="" width="50" height="40">
                                 @endif

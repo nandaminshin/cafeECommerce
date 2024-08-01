@@ -186,4 +186,59 @@
     </div>
     @endif
 
+    {{-- order remove alert --}}
+    @if ($order_remove_message)
+    <div class="bs-toast toast fade show bg-primary" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <i class="bx bx-bell me-2"></i>
+            <div class="me-auto fw-semibold">An order removed!</div>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            {{ $order_remove_message }}
+        </div>
+    </div>
+    @endif
+
+    {{-- order doen not exist alert--}}
+    @if ($order_does_not_exist)
+    <div class="bs-toast toast fade show bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <i class="bx bx-bell me-2"></i>
+            <div class="me-auto fw-semibold">Order not exist!</div>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            {{ $order_does_not_exist }}
+        </div>
+    </div>
+    @endif
+
+    {{-- order confirm alert --}}
+    @if ($order_confirm_message)
+    <div class="bs-toast toast fade show bg-primary" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <i class="bx bx-bell me-2"></i>
+            <div class="me-auto fw-semibold">An order confirmed!</div>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            {{ $order_confirm_message }}
+        </div>
+    </div>
+    @endif
+
+    @if ($order_deny_message)
+    <div class="bs-toast toast fade show bg-primary" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <i class="bx bx-bell me-2"></i>
+            <div class="me-auto fw-semibold">An order denied!</div>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            {{ $order_deny_message }}
+        </div>
+    </div>
+    @endif
+
 </div>

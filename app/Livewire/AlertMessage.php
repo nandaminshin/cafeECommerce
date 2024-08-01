@@ -32,6 +32,10 @@ class AlertMessage extends Component
     public $admin_already_exists;
     public $admin_account_delete_fail;
     public $user_account_delete_fail;
+    public $order_remove_message;
+    public $order_does_not_exist;
+    public $order_confirm_message;
+    public $order_deny_message;
 
     public function mount()
     {
@@ -60,6 +64,10 @@ class AlertMessage extends Component
         $this->admin_already_exists = session()->get('admin_already_exists');
         $this->admin_account_delete_fail = session()->get('admin_account_delete_fail');
         $this->user_account_delete_fail = session()->get('user_account_delete_fail');
+        $this->order_remove_message = session()->get('order_remove_message');
+        $this->order_does_not_exist = session()->get('order_does_not_exist');
+        $this->order_confirm_message = session()->get('order_confirm_message');
+        $this->order_deny_message = session()->get('order_deny_message');
 
 
         session()->forget('category_create_message');
@@ -87,6 +95,10 @@ class AlertMessage extends Component
         session()->forget('admin_already_exists');
         session()->forget('admin_account_delete_fail');
         session()->forget('user_account_delete_fail');
+        session()->forget('order_remvoe_message');
+        session()->forget('order_does_not_exist');
+        session()->forget('order_confirm_message');
+        session()->forget('order_deny_message');
     }
 
     public function render()

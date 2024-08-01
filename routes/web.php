@@ -10,9 +10,11 @@ use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Middleware\LoadCategoryData;
+use App\Http\Middleware\LoadOrderData;
 use App\Models\Product;
 use SebastianBergmann\CodeCoverage\Report\Html\CustomCssFile;
 
@@ -25,7 +27,7 @@ Route::middleware([
 ])->group(function () {
 
     //Admin
-    Route::group(['prefix' => 'admin', 'middleware' => AdminMiddleware::class], function () {
+    Route::group(['prefix' => 'admin', 'middleware' => [AdminMiddleware::class, LoadOrderData::class]], function () {
 
         Route::get('/allProducts', [ProductController::class, 'productPage'])->name('admin#product');
         Route::get('/createCategory', [CategoryController::class, 'categoryCreatePage'])->name('admin#create_category');
@@ -49,9 +51,15 @@ Route::middleware([
         Route::get('/add-admin', [UserManagementController::class, 'addAdminPage'])->name('admin#add_new_admin');
         Route::post('/add-admin-save/{id}', [UserManagementController::class, 'addAdminSave'])->name('admin#add_admin_save');
         Route::get('/user-management', [UserManagementController::class, 'userManagementPage'])->name('admin#user_management_page');
-
         Route::get('/admin-detail/{id}', [UserManagementController::class, 'adminDetailPage'])->name('admin#admin_detail');
         Route::get('/user-detail/{id}', [UserManagementController::class, 'userDetailPage'])->name('admin#user_detail');
+        Route::get('/orders', [OrderController::class, 'orderPage'])->name('admin#order_page');
+        Route::get('/confirmed-orders', [OrderController::class, 'confirmedOrderPage'])->name('admin#confirmed_order_page');
+        Route::get('/denied-orders', [OrderController::class, 'deniedOrderPage'])->name('admin#denied_order_page');
+        Route::post('/order-remove/{id}', [OrderController::class, 'removeOrder'])->name('admin#remove_order');
+        Route::get('/order-details/{id}', [OrderController::class, 'orderDetailPage'])->name('admin#order_detail');
+        Route::post('/confirm-order/{id}', [OrderController::class, 'confirmOrder'])->name('admin#confirm_order');
+        Route::post('/deny-order/{id}', [OrderController::class, 'denyOrder'])->name('admin#deny_order');
     });
 });
 

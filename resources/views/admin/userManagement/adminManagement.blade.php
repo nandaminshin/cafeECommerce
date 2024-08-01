@@ -61,7 +61,7 @@ active
                                 @endif
 
                             </td>
-                            <td class="max-width-td"><strong>{{ $item->name }}</strong></td>
+                            <td class="max-width-td2"><strong>{{ $item->name }}</strong></td>
                             <td class="max-width-td">{{ $item->email }}</td>
                             <td class="max-width-td">{{ $item->phone }}</td>
                             <td class="max-width-td">{{ $item->address }}</td>

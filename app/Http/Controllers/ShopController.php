@@ -84,18 +84,11 @@ class ShopController extends Controller
         $user_id = $request->input('user_id');
         $items = $request->input('items');
         $total = $request->input('total');
-        logger()->info('Order received', [
-            'items' => $items,
-            'total' => $total
-        ]);
 
         $user = User::find($user_id);
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
         }
-        logger()->info('current user', [
-            'user' => $user,
-        ]);
 
         // Create a new order
         $order = new Order();
