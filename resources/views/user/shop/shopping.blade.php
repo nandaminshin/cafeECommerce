@@ -22,7 +22,7 @@ class="active"
                 <div class="breadcrumb__text">
                     <h4>Shop</h4>
                     <div class="breadcrumb__links">
-                        <a href="./index.html">Home</a>
+                        <a href="{{ route('home') }}">Home</a>
                         <span>Shop</span>
                     </div>
                 </div>
@@ -80,23 +80,16 @@ class="active"
                 </div>
             </div>
             <div class="col-lg-9">
-                <div class="shop__product__option">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="shop__product__option__left">
-                                <p>
-                                    Showing {{ $product_data->count() }}
-                                    results
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="row" id="product-list">
+                    @if ($product_data)
                     @foreach ($product_data as $item)
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="{{ asset('storage/' . $item->image) }}">
+                            <div class="product__item__pic set-bg" @if ($item->image == null)
+                                data-setbg="{{ asset('admin/assets/img/elements/18.jpg') }}"
+                                @else
+                                data-setbg="{{ asset('storage/' . $item->image) }}"
+                                @endif>
                                 <ul class="product__hover">
                                     <li>
                                         <a href="{{ route('user#product_details', $item->id) }}">
@@ -113,8 +106,12 @@ class="active"
 
                                 @if (Auth::check())
                                 @if (in_array($item->id, $cart))
-                                <span class="text-info">
-                                    Already in cart
+                                <span class="text-danger">
+                                    Already In Cart
+                                </span>
+                                @elseif($item->stock_status == 0)
+                                <span class="text-primary">
+                                    Out Of Stock
                                 </span>
                                 @else
                                 <button class="add-cart" value="{{ $item->id }}">
@@ -138,6 +135,9 @@ class="active"
                         </div>
                     </div>
                     @endforeach
+                    @else
+                    <h2 class="m-5">There is no product here</h2>
+                    @endif
                 </div>
                 <div class="p-4 align-center">
                     {{ $product_data->links() }}

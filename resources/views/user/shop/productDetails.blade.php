@@ -6,7 +6,7 @@ $cart_item;
 @extends("user.master")
 
 @section("title")
-Shop
+Product Details
 @endsection
 
 @section("active_shop")
@@ -20,8 +20,8 @@ class="active"
             <div class="row">
                 <div class="col-lg-12">
                     <div class="product__details__breadcrumb">
-                        <a href="./index.html">Home</a>
-                        <a href="./shop.html">Shop</a>
+                        <a href="{{ route('home') }}">Home</a>
+                        <a href="{{ route('user#shop') }}">Shop</a>
                         <span>Product Details</span>
                     </div>
                 </div>

@@ -25,7 +25,7 @@ active open
             <div class="d-flex">
                 <h5 class="card-header">Denied Order table</h5>
                 <div class="mt-3 ms-5">
-                    <form action="{{ route('admin#user_management_page') }}" method="get">
+                    <form action="{{ route('admin#denied_order_page') }}" method="get">
                         @csrf
                         <div class="d-flex">
                             <input type="text" name="key" class="form-control" width="160px"

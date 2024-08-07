@@ -7,14 +7,18 @@ use App\Http\Controllers\HomeController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AjaxController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Middleware\LoadCategoryData;
 use App\Http\Middleware\LoadOrderData;
+use App\Models\Blog;
 use App\Models\Product;
 use SebastianBergmann\CodeCoverage\Report\Html\CustomCssFile;
 
@@ -38,6 +42,7 @@ Route::middleware([
         Route::get('/product/edit/{id}/{category_id}', [ProductController::class, 'productEditPage'])->name('admin#product_edit');
         Route::post('/product/delete/{id}/{category_id}', [ProductController::class, 'productDelete'])->name('admin#product_delete');
         Route::post('/product/edit/save/{caetgory_id}', [ProductController::class, 'productEditSave'])->name('admin#product_edit_save');
+        Route::post('change-stock-status', [ProductController::class, 'changeStockStatus']);
         Route::get('/editCategory/{id}', [CategoryController::class, 'categoryEditPage'])->name('admin#edit_category');
         Route::post('/editCategory/save', [CategoryController::class, 'categoryEditSave'])->name('admin#category_edit_save');
         Route::post('/category/delete/{id}', [CategoryController::class, 'categoryDelete'])->name('admin#category_delete');
@@ -60,6 +65,13 @@ Route::middleware([
         Route::get('/order-details/{id}', [OrderController::class, 'orderDetailPage'])->name('admin#order_detail');
         Route::post('/confirm-order/{id}', [OrderController::class, 'confirmOrder'])->name('admin#confirm_order');
         Route::post('/deny-order/{id}', [OrderController::class, 'denyOrder'])->name('admin#deny_order');
+        Route::get('/blog-list', [BlogController::class, 'blogListPage'])->name('admin#blog_list');
+        Route::get('/blog-details/{id}', [BlogController::class, 'adminBlogDetailPage'])->name('admin#admin_blog_detail');
+        Route::get('/blog-edit/{id}', [BlogController::class, 'blogEditPage'])->name('admin#edit_blog');
+        Route::post('/blog-edit/save', [BlogController::class, 'blogEditSave'])->name('admin#edit_blog_save');
+        Route::get('/create-blog', [BlogController::class, 'blogCreatePage'])->name('admin#blog_create_page');
+        Route::post('/create-blog/save', [BlogController::class, 'createBlog'])->name('admin#create_blog');
+        Route::post('/remove-blog/{id}', [BlogController::class, 'removeBlog'])->name('admin#remove_blog');
     });
 });
 
@@ -82,4 +94,9 @@ Route::group(['prefix' => 'customer', 'middleware' => UserMiddleware::class], fu
     Route::post('/delete-account/{id}', [CustomerController::class, 'deleteAccount'])->name('user#delete_account');
     Route::get('/change-password', [CustomerController::class, 'changePasswordPage'])->name('user#change_password');
     Route::post('/change-password/save', [CustomerController::class, 'changePasswordSave'])->name('user#change_password_save');
+    Route::get('/blogs', [BlogController::class, 'blogPage'])->name('user#blog_page');
+    Route::get('/blogs/{id}', [BlogController::class, 'blogDetailPage'])->name('user#blog_detail');
+    Route::post('/comment/{bid}/{uid}', [CommentController::class, 'addComment'])->name('user#add_comment');
+    Route::post('/delete-comment/{id}', [CommentController::class, 'deleteComment'])->name('user#delete_comment');
+    Route::get('/contact', [ContactController::class, 'contactPage'])->name('user#contact');
 });

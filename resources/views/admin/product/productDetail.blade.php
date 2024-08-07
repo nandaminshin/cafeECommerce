@@ -54,20 +54,22 @@ active
                             <th>Price</th>
                             <th>Image</th>
                             <th>Description</th>
+                            <th>Stock</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
                         @foreach ($data as $item)
-                        <tr class="data-row">
+                        <tr class="data-row" data-id="{{ $item->id }}">
                             <td class="max-width-td2"><strong>{{ $item->name }}</strong></td>
                             <td>{{ $item->price }}</td>
                             <td>
                                 @if ($item->image == null)
-                                <img src="{{ asset('admin/assets/img/elements/18.jpg') }}" alt="" width="50"
-                                    height="50">
+                                <img src="{{ asset('admin/assets/img/elements/18.jpg') }}" alt="" width="50" height="50"
+                                    style="border-radius: 10px">
                                 @else
-                                <img src="{{ asset('storage/' . $item->image) }}" alt="" width="50" height="40">
+                                <img src="{{ asset('storage/' . $item->image) }}" alt="" width="50" height="50"
+                                    style="border-radius: 10px">
                                 @endif
 
                             </td>
@@ -89,6 +91,23 @@ active
                                         </div>
                                     </div>
                                 </span>
+                            </td>
+                            <td>
+                                @if ($item->stock_status == 1)
+                                <div class="col-3 text-end">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input float-end stock-status" type="checkbox"
+                                            role="switch" checked />
+                                    </div>
+                                </div>
+                                @else
+                                <div class="col-3 text-end">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input float-end stock-status" type="checkbox"
+                                            role="switch" />
+                                    </div>
+                                </div>
+                                @endif
                             </td>
                             <td>
                                 <a
@@ -216,6 +235,8 @@ active
             var productDeleteCancelBtn = deleteProductModal.find('#cancel-product-delete');
             var deleteBtn = row.find('.delete-product-btn');
             var deleteProductForm = row.find('.delete-product-form');
+            var stockStatus = row.find('.stock-status');
+
             // Show modal when logout button is clicked
             deleteBtn.on('click', function (event) {
                 event.preventDefault();
@@ -244,6 +265,22 @@ active
                     deleteProductModal.hide();
                 }
             });
+
+            stockStatus.on('change', function () {
+                var item_id = row.data('id');
+                $.ajax({
+                    method: 'post',
+                    type: 'json',
+                    url: '/admin/change-stock-status',
+                    data: {
+                        id: item_id,
+                        _token: '{{ csrf_token() }}', // Include CSRF token
+                    },
+                    success: function (response) {
+                        console.log(response['message']);
+                    }
+                })
+            })
         });
 
     })

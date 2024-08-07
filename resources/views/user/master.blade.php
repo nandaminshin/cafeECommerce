@@ -99,8 +99,10 @@ $cart_item;
                 </li>
                 <li style="list-style-type: none;" class="m-3"><a href="{{ route('user#shop') }}"
                         class="mobile-nav">Shop</a></li>
-                <li style="list-style-type: none;" class="m-3"><a href="" class="mobile-nav">Blog</a></li>
-                <li style="list-style-type: none;" class="m-3"><a href="" class="mobile-nav">Contact</a></li>
+                <li style="list-style-type: none;" class="m-3"><a href="{{ route('user#blog_page') }}"
+                        class="mobile-nav">Blog</a></li>
+                <li style="list-style-type: none;" class="m-3"><a href="{{ route('user#contact') }}"
+                        class="mobile-nav">Contact</a></li>
                 @if (Auth::check())
                 <li style="list-style-type: none;" class="m-3"><a href="{{ route('user#cart') }}" class="mobile-nav">
                         <div class="d-flex">
@@ -191,8 +193,8 @@ $cart_item;
                                     <li><a href="./blog-details.html">Blog Details</a></li>
                                 </ul>
                             </li> --}}
-                            <li @yield('active_blog')><a href="./blog.html">Blog</a></li>
-                            <li @yield('active_contact')><a href="">Contacts</a></li>
+                            <li @yield('active_blog')><a href="{{ route('user#blog_page') }}">Blog</a></li>
+                            <li @yield('active_contact')><a href="{{ route('user#contact') }}">Contacts</a></li>
                             @if (Auth::check())
                             <li @yield('active_cart')><a href="{{ route('user#cart') }}">
                                     <div class="d-flex">
@@ -264,7 +266,9 @@ $cart_item;
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__logo">
-                            <a href="#"><img src="img/footer-logo.png" alt=""></a>
+                            <a href="{{ route('home') }}">
+                                <h2 style="text-decoration: none; color: white;">ESPRESSO</h2>
+                            </a>
                         </div>
                         <p>The customer is at the heart of our unique business model, which includes design.</p>
                         <a href="#"><img src="img/payment.png" alt=""></a>
@@ -274,21 +278,21 @@ $cart_item;
                     <div class="footer__widget">
                         <h6>Shopping</h6>
                         <ul>
-                            <li><a href="#">Clothing Store</a></li>
-                            <li><a href="#">Trending Shoes</a></li>
-                            <li><a href="#">Accessories</a></li>
-                            <li><a href="#">Sale</a></li>
+                            <li><a href="{{ route('user#shop') }}">Store</a></li>
+                            @if (Auth::check())
+                            <li><a href="{{ route('user#cart') }}">Cart</a></li>
+                            <li><a href="{{ route('user#order_list', Auth::user()->id) }}">Orders</a></li>
+                            @endif
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6">
                     <div class="footer__widget">
-                        <h6>Shopping</h6>
+                        <h6>Navigation</h6>
                         <ul>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Payment Methods</a></li>
-                            <li><a href="#">Delivary</a></li>
-                            <li><a href="#">Return & Exchanges</a></li>
+                            <li><a href="{{ route('home') }}">Home</a></li>
+                            <li><a href="{{ route('user#blog_page') }}">Blogs</a></li>
+                            <li><a href="{{ route('user#contact') }}">Contact Us</a></li>
                         </ul>
                     </div>
                 </div>
@@ -312,9 +316,8 @@ $cart_item;
                         <p>Copyright ©
                             <script>
                                 document.write(new Date().getFullYear());
-                            </script>2020
-                            All rights reserved | This template is made with <i class="fa fa-heart-o"
-                                aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            </script>
+                            All rights reserved | ESPRESSO
                         </p>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </div>

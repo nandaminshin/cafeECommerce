@@ -59,6 +59,7 @@ class ProductController extends Controller
         return view('admin.product.productDetail', compact('data', 'category_data'));
     }
 
+
     public function productEditPage($id, $category_id)
     {
         $data = Product::where('id', $id)->first();
@@ -113,6 +114,26 @@ class ProductController extends Controller
         Category::where('id', $category_id)->update(['quantity' => DB::raw('quantity - 1')]);
         return redirect()->route('admin#product_detail', $category_id)->with(['product_delete_message' => 'A product deleted!', 'deleted_product_name' => $deleted_product_name]);
     }
+
+
+    public function changeStockStatus(Request $request)
+    {
+        $id = (int) $request->input('id');
+        $product = Product::where('id', $id)->first();
+        if ($product->stock_status == 1) {
+            $product->update(['stock_status' => 0]);
+        } else {
+            $product->update(['stock_status' => 1]);
+        }
+
+        return response()->json(['message' => 'Stock status successfully updated!']);
+    }
+
+
+
+
+
+
 
 
     public function storeImage(Request $request)

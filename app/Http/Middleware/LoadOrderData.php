@@ -16,8 +16,7 @@ class LoadOrderData
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $orders = Order::where('status', 'pending')->with(['user'])
-            ->orderBy('created_at', 'desc')->paginate(5);
+        $orders = Order::where('status', '=', 'pending')->with(['user'])->get();
         view()->share('orders', $orders);
         return $next($request);
     }

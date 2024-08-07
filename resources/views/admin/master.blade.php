@@ -196,6 +196,24 @@
                                 </div>
                             </a>
                         </li>
+                        <li class="menu-item @yield('active_blog1')">
+                            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                                <div data-i18n="Account Settings">Manage Blog</div>
+                            </a>
+                            <ul class="menu-sub">
+                                <li class="menu-item @yield('active_blog2')">
+                                    <a href="{{ route('admin#blog_list', Auth::user()->id) }}" class="menu-link">
+                                        <div data-i18n="Account">Blog Management</div>
+                                    </a>
+                                </li>
+                                <li class="menu-item @yield('active_blog3')">
+                                    <a href="{{ route('admin#blog_create_page') }}" class="menu-link">
+                                        <div data-i18n="Notifications" class="d-flex">Create New Blog</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         <li class="menu-item">
                             <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues" target="_blank" class="menu-link">
                                 <i class="menu-icon tf-icons bx bx-support"></i>

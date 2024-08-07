@@ -9,14 +9,27 @@ class OrderController extends Controller
 {
     public function orderPage()
     {
-        return view('admin.orderManagement.orderManagement');
+        $data = Order::where('status', 'pending')->with(['user'])
+            ->when(request('key'), function ($query) {
+                $query->whereHas('user', function ($query) {
+                    $query->where('name', 'like', '%' . request('key') . '%');
+                });
+            })->orderBy('created_at', 'desc')->paginate(2);
+        $data->appends(request()->all());
+        return view('admin.orderManagement.orderManagement', compact('data'));
     }
 
 
 
     public function confirmedOrderPage()
     {
-        $data = Order::where('status', 'confirmed')->orderBy('created_at', 'desc')->paginate(5);;
+        $data = Order::where('status', 'confirmed')->with(['user'])
+            ->when(request('key'), function ($query) {
+                $query->whereHas('user', function ($query) {
+                    $query->where('name', 'like', '%' . request('key') . '%');
+                });
+            })->orderBy('created_at', 'desc')->paginate(2);
+        $data->appends(request()->all());
         return view('admin.orderManagement.confirmedOrder', compact('data'));
     }
 
@@ -24,7 +37,13 @@ class OrderController extends Controller
 
     public function deniedOrderPage()
     {
-        $data = Order::where('status', 'denied')->orderBy('created_at', 'desc')->paginate(5);;
+        $data = Order::where('status', 'denied')->with(['user'])
+            ->when(request('key'), function ($query) {
+                $query->whereHas('user', function ($query) {
+                    $query->where('name', 'like', '%' . request('key') . '%');
+                });
+            })->orderBy('created_at', 'desc')->paginate(2);
+        $data->appends(request()->all());
         return view('admin.orderManagement.deniedOrder', compact('data'));
     }
 

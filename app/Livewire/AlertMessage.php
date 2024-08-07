@@ -36,6 +36,9 @@ class AlertMessage extends Component
     public $order_does_not_exist;
     public $order_confirm_message;
     public $order_deny_message;
+    public $blog_create_message;
+    public $blog_update_message;
+    public $blog_remove_message;
 
     public function mount()
     {
@@ -68,6 +71,9 @@ class AlertMessage extends Component
         $this->order_does_not_exist = session()->get('order_does_not_exist');
         $this->order_confirm_message = session()->get('order_confirm_message');
         $this->order_deny_message = session()->get('order_deny_message');
+        $this->blog_create_message = session()->get('blog_create_message');
+        $this->blog_update_message = session()->get('blog_update_message');
+        $this->blog_remove_message = session()->get('blog_remove_message');
 
 
         session()->forget('category_create_message');
@@ -99,6 +105,9 @@ class AlertMessage extends Component
         session()->forget('order_does_not_exist');
         session()->forget('order_confirm_message');
         session()->forget('order_deny_message');
+        session()->forget('blog_create_message');
+        session()->forget('blog_update_message');
+        session()->forget('blog_remove_message');
     }
 
     public function render()

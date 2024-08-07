@@ -593,9 +593,10 @@ ol {
 }
 
 .hero__text h6 {
-    color: #e53637;
-    font-size: 14px;
-    font-weight: 700;
+    color: #ffb300;
+    text-shadow: 2px 2px black;
+    font-size: 25px;
+    font-weight: 810;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 28px;
@@ -608,7 +609,8 @@ ol {
 }
 
 .hero__text h2 {
-    color: #111111;
+    color: #feee91;
+    text-shadow: 1px 1px black;
     font-size: 48px;
     font-weight: 700;
     line-height: 58px;
@@ -622,6 +624,8 @@ ol {
 }
 
 .hero__text p {
+    color: #feee91;
+    text-shadow: 2px 2px black;
     font-size: 16px;
     line-height: 28px;
     margin-bottom: 35px;
@@ -655,7 +659,7 @@ ol {
 
 .hero__social a {
     font-size: 16px;
-    color: #3d3d3d;
+    color: #fff34b;
     display: inline-block;
     margin-right: 32px;
 }
@@ -4031,4 +4035,61 @@ ol {
     color: #000000;
     padding-left: 20px;
     margin-bottom: 20px;
+}
+
+.comment-div {
+    width: auto; /* Set your desired width */
+    height: 360px; /* Set your desired height */
+    overflow-y: auto; /* Enables vertical scrolling */
+    overflow-x: hidden; /* Hides horizontal scrollbar */
+    border-top: 3px solid rgb(0, 0, 0);
+    border-left: 3px solid red; /* Adds a border for visibility */
+    border-radius: 30px;
+    /* box-shadow: 5px 5px 1px #000000; */
+    padding: 10px; /* Adds some inner spacing */
+    background-color: #f9f9f9; /* Optional: adds a background color */
+}
+
+.comment-div::-webkit-scrollbar {
+    width: 9px; /* Adjust scrollbar width */
+    
+}
+
+.comment-div::-webkit-scrollbar-track {
+    background: #f1f1f100; /* Scrollbar track color */
+    border-radius: 10px; /* Match the div's border-radius */
+    margin-top: 18px;
+    margin-bottom: 18px;
+}
+
+.comment-div::-webkit-scrollbar-thumb {
+    background: #0000008f; /* Scrollbar thumb color */
+    border-radius: 10px; /* Round the scrollbar thumb */
+    border: 3px solid #ffffff00; /* Create padding around the thumb */
+    transition: transform 0.3s, color 0.3s;
+}
+
+.comment-div::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.704); /* Scrollbar thumb color on hover */
+}
+
+.comment-username {
+    padding-bottom: 5px;
+    display: block;
+    font-size: larger;
+    font-weight: bolder;
+}
+
+.comment-body {
+    background-color: #00000025;
+    border-radius: 16px;
+}
+
+.product-ad-text {
+    font-weight: bolder;
+    border-bottom: solid 2px rgb(176, 0, 0);
+}
+
+.product-ad-img {
+    box-shadow: 3px 3px black;
 }

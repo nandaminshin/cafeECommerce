@@ -16,7 +16,7 @@ class ShopController extends Controller
     {
         $product_data = Product::when(request('key'), function ($query) {
             $query->where('name', 'like', '%' . request('key') . '%');
-        })->paginate(2);
+        })->paginate(10);
         $product_data->appends(request()->all());
         return view('user.shop.shopping', compact('product_data'));
     }
@@ -26,7 +26,7 @@ class ShopController extends Controller
     {
         $product_data = Product::when(request('key'), function ($query) {
             $query->where('name', 'like', '%' . request('key') . '%');
-        })->where('category_id', $id)->paginate(2);
+        })->where('category_id', $id)->paginate(10);
         $product_data->appends(request()->all());
         return view('user.shop.shopping', compact('product_data'));
     }

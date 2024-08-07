@@ -17,9 +17,9 @@ class="active"
                 <div class="breadcrumb__text">
                     <h4>Check Out</h4>
                     <div class="breadcrumb__links">
-                        <a href="./index.html">Home</a>
-                        <a href="./shop.html">Shop</a>
-                        <a href="./shop.html">Shopping Cart</a>
+                        <a href="{{ route('home') }}">Home</a>
+                        <a href="{{ route('user#shop') }}">Shop</a>
+                        <a href="{{ route('user#cart') }}">Shopping Cart</a>
                         <span>Order List</span>
                     </div>
                 </div>

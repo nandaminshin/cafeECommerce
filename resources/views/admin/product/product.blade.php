@@ -30,27 +30,6 @@ active
         @else
 
         @foreach ($category_data as $item)
-        {{-- <a href="{{ route('admin#product_detail', $item->id) }}" class="category_card">
-            <div class="col">
-                <div class="card h-100">
-                    <img class="card-img-top" @if ($item->image == null)
-                    src="{{ asset('admin/assets/img/elements/18.jpg') }}"
-                    @else
-                    src="{{ asset('storage/'. $item->image) }}"
-                    @endif alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $item->name }}</h5>
-                        <p class="card-text">
-                            @if ($item->quantity > 0)
-                            {{ $item->quantity }} items available.
-                            @else
-                            No item yet!
-                            @endif
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </a> --}}
 
         <div class="container">
             <a href="{{ route('admin#product_detail', $item->id) }}" class="category_card">

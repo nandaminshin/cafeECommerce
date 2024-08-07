@@ -10,48 +10,36 @@ class="active"
 
 @section('content')
 
-<h1>This is normal user.</h1>
-
 <!-- Hero Section Begin -->
 <section class="hero">
     <div class="hero__slider owl-carousel">
-        <div class="hero__items set-bg" data-setbg="{{ asset('user/img/hero/hero-1.jpg') }}">
+        <div class="hero__items set-bg" data-setbg="{{ asset('user/img/cafe_wallpaper.jpg') }}">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-5 col-lg-7 col-md-8">
                         <div class="hero__text">
-                            <h6>Summer Collection</h6>
-                            <h2>Fall - Winter Collections 2030</h2>
-                            <p>A specialist label creating luxury essentials. Ethically crafted with an unwavering
-                                commitment to exceptional quality.</p>
-                            <a href="#" class="primary-btn">Shop now <span class="arrow_right"></span></a>
-                            <div class="hero__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                            </div>
+                            <h6>A place where you can find happiness...</h6>
+                            <h2>Welcome to ESPRESSO</span></h2>
+                            <p>A specialist place for coffee, cake, bread and drink. Quality is our first priority.</p>
+                            <a href="{{ route('user#shop') }}" class="primary-btn"
+                                style="background-color: #feee91; color: black;">Shop now
+                                <span class="arrow_right"></span></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="hero__items set-bg" data-setbg="{{ asset('user/img/hero/hero-2.jpg') }}">
+        <div class="hero__items set-bg" data-setbg="{{ asset('user/img/cafe_wallpaper2.jpg') }}">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-5 col-lg-7 col-md-8">
                         <div class="hero__text">
-                            <h6>Summer Collection</h6>
-                            <h2>Fall - Winter Collections 2030</h2>
-                            <p>A specialist label creating luxury essentials. Ethically crafted with an unwavering
-                                commitment to exceptional quality.</p>
-                            <a href="#" class="primary-btn">Shop now <span class="arrow_right"></span></a>
-                            <div class="hero__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                            </div>
+                            <h6>A place where you can find happiness...</h6>
+                            <h2>Welcome to ESPRESSO</span></h2>
+                            <p>A specialist place for coffee, cake, bread and drink. Quality is our first priority.</p>
+                            <a href="{{ route('user#shop') }}" class="primary-btn"
+                                style="background-color: #feee91; color: black;">Shop now <span
+                                    class="arrow_right"></span></a>
                         </div>
                     </div>
                 </div>
@@ -62,340 +50,40 @@ class="active"
 <!-- Hero Section End -->
 
 <!-- Banner Section Begin -->
-<section class="banner spad">
+<section class="mt-5 mb-5">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-7 offset-lg-4">
-                <div class="banner__item">
-                    <div class="banner__item__pic">
-                        <img src="{{ asset('user/img/banner/banner-1.jpg') }}" alt="">
-                    </div>
-                    <div class="banner__item__text">
-                        <h2>Clothing Collections 2030</h2>
-                        <a href="#">Shop now</a>
-                    </div>
-                </div>
+        <div class="row mt-4 mb-4">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 p-3">
+                <h2 class="product-ad-text">High quality coffee</h2>
             </div>
-            <div class="col-lg-5">
-                <div class="banner__item banner__item--middle">
-                    <div class="banner__item__pic">
-                        <img src="{{ asset('user/img/banner/banner-2.jpg') }}" alt="">
-                    </div>
-                    <div class="banner__item__text">
-                        <h2>Accessories</h2>
-                        <a href="#">Shop now</a>
-                    </div>
-                </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 p-3">
+                <img src="{{ asset('user/img/coffee_wallpaper.jpg') }}" alt="" width="270" height="180"
+                    class="product-ad-img">
             </div>
-            <div class="col-lg-7">
-                <div class="banner__item banner__item--last">
-                    <div class="banner__item__pic">
-                        <img src="{{ asset('user/img/banner/banner-3.jpg') }}" alt="">
-                    </div>
-                    <div class="banner__item__text">
-                        <h2>Shoes Spring 2030</h2>
-                        <a href="#">Shop now</a>
-                    </div>
-                </div>
+        </div>
+        <div class="row mt-4 mb-4">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 p-3">
+                <h2 class="product-ad-text">High quality cakes</h2>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 order-info order-xl-first order-lg-first p-3">
+                <img src="{{ asset('user/img/cake_wallpaper.jpg') }}" alt="" width="270" height="180"
+                    class="product-ad-img" style="float: right">
+            </div>
+        </div>
+        <div class="row mt-4 mb-4">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 p-3">
+                <h2 class="product-ad-text">Organic refreshing smoothies</h2>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 p-3">
+                <img src="{{ asset('user/img/smoothie_wallpaper.jpg') }}" alt="" width="270" height="180"
+                    class="product-ad-img">
             </div>
         </div>
     </div>
 </section>
 <!-- Banner Section End -->
 
-<!-- Product Section Begin -->
-<section class="product spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <ul class="filter__controls">
-                    <li class="active" data-filter="*">Best Sellers</li>
-                    <li data-filter=".new-arrivals">New Arrivals</li>
-                    <li data-filter=".hot-sales">Hot Sales</li>
-                </ul>
-            </div>
-        </div>
-        <div class="row product__filter">
-            <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="{{ asset('user/img/product/product-1.jpg') }}">
-                        <span class="label">New</span>
-                        <ul class="product__hover">
-                            <li><a href="#"><img src="{{ asset('user/img/icon/heart.png') }}" alt=""></a></li>
-                            <li><a href="#"><img src="{{ asset('user/img/icon/compare.png') }}" alt="">
-                                    <span>Compare</span></a></li>
-                            <li><a href="#"><img src="{{ asset('user/img/icon/search.png') }}" alt=""></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6>Piqué Biker Jacket</h6>
-                        <a href="#" class="add-cart">+ Add To Cart</a>
-                        <div class="rating">
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                        </div>
-                        <h5>$67.24</h5>
-                        <div class="product__color__select">
-                            <label for="pc-1">
-                                <input type="radio" id="pc-1">
-                            </label>
-                            <label class="active black" for="pc-2">
-                                <input type="radio" id="pc-2">
-                            </label>
-                            <label class="grey" for="pc-3">
-                                <input type="radio" id="pc-3">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/product/product-2.jpg">
-                        <ul class="product__hover">
-                            <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                            <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                            <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6>Piqué Biker Jacket</h6>
-                        <a href="#" class="add-cart">+ Add To Cart</a>
-                        <div class="rating">
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                        </div>
-                        <h5>$67.24</h5>
-                        <div class="product__color__select">
-                            <label for="pc-4">
-                                <input type="radio" id="pc-4">
-                            </label>
-                            <label class="active black" for="pc-5">
-                                <input type="radio" id="pc-5">
-                            </label>
-                            <label class="grey" for="pc-6">
-                                <input type="radio" id="pc-6">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                <div class="product__item sale">
-                    <div class="product__item__pic set-bg" data-setbg="img/product/product-3.jpg">
-                        <span class="label">Sale</span>
-                        <ul class="product__hover">
-                            <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                            <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                            <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6>Multi-pocket Chest Bag</h6>
-                        <a href="#" class="add-cart">+ Add To Cart</a>
-                        <div class="rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-o"></i>
-                        </div>
-                        <h5>$43.48</h5>
-                        <div class="product__color__select">
-                            <label for="pc-7">
-                                <input type="radio" id="pc-7">
-                            </label>
-                            <label class="active black" for="pc-8">
-                                <input type="radio" id="pc-8">
-                            </label>
-                            <label class="grey" for="pc-9">
-                                <input type="radio" id="pc-9">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/product/product-4.jpg">
-                        <ul class="product__hover">
-                            <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                            <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                            <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6>Diagonal Textured Cap</h6>
-                        <a href="#" class="add-cart">+ Add To Cart</a>
-                        <div class="rating">
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                        </div>
-                        <h5>$60.9</h5>
-                        <div class="product__color__select">
-                            <label for="pc-10">
-                                <input type="radio" id="pc-10">
-                            </label>
-                            <label class="active black" for="pc-11">
-                                <input type="radio" id="pc-11">
-                            </label>
-                            <label class="grey" for="pc-12">
-                                <input type="radio" id="pc-12">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/product/product-5.jpg">
-                        <ul class="product__hover">
-                            <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                            <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                            <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6>Lether Backpack</h6>
-                        <a href="#" class="add-cart">+ Add To Cart</a>
-                        <div class="rating">
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                        </div>
-                        <h5>$31.37</h5>
-                        <div class="product__color__select">
-                            <label for="pc-13">
-                                <input type="radio" id="pc-13">
-                            </label>
-                            <label class="active black" for="pc-14">
-                                <input type="radio" id="pc-14">
-                            </label>
-                            <label class="grey" for="pc-15">
-                                <input type="radio" id="pc-15">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
-                <div class="product__item sale">
-                    <div class="product__item__pic set-bg" data-setbg="img/product/product-6.jpg">
-                        <span class="label">Sale</span>
-                        <ul class="product__hover">
-                            <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                            <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                            <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6>Ankle Boots</h6>
-                        <a href="#" class="add-cart">+ Add To Cart</a>
-                        <div class="rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-o"></i>
-                        </div>
-                        <h5>$98.49</h5>
-                        <div class="product__color__select">
-                            <label for="pc-16">
-                                <input type="radio" id="pc-16">
-                            </label>
-                            <label class="active black" for="pc-17">
-                                <input type="radio" id="pc-17">
-                            </label>
-                            <label class="grey" for="pc-18">
-                                <input type="radio" id="pc-18">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/product/product-7.jpg">
-                        <ul class="product__hover">
-                            <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                            <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                            <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6>T-shirt Contrast Pocket</h6>
-                        <a href="#" class="add-cart">+ Add To Cart</a>
-                        <div class="rating">
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                        </div>
-                        <h5>$49.66</h5>
-                        <div class="product__color__select">
-                            <label for="pc-19">
-                                <input type="radio" id="pc-19">
-                            </label>
-                            <label class="active black" for="pc-20">
-                                <input type="radio" id="pc-20">
-                            </label>
-                            <label class="grey" for="pc-21">
-                                <input type="radio" id="pc-21">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/product/product-8.jpg">
-                        <ul class="product__hover">
-                            <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                            <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li>
-                            <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6>Basic Flowing Scarf</h6>
-                        <a href="#" class="add-cart">+ Add To Cart</a>
-                        <div class="rating">
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                        </div>
-                        <h5>$26.28</h5>
-                        <div class="product__color__select">
-                            <label for="pc-22">
-                                <input type="radio" id="pc-22">
-                            </label>
-                            <label class="active black" for="pc-23">
-                                <input type="radio" id="pc-23">
-                            </label>
-                            <label class="grey" for="pc-24">
-                                <input type="radio" id="pc-24">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Product Section End -->
+
 
 <!-- Categories Section Begin -->
 <section class="categories spad">
@@ -478,52 +166,163 @@ class="active"
 </section>
 <!-- Instagram Section End -->
 
-<!-- Latest Blog Section Begin -->
-<section class="latest spad">
+<!-- About Section Begin -->
+<section class="about spad">
     <div class="container">
+        <h1 class="mt-2 mb-3">About us</h1>
         <div class="row">
             <div class="col-lg-12">
-                <div class="section-title">
-                    <span>Latest News</span>
-                    <h2>Fashion New Trends</h2>
+                <div class="about__pic">
+                    <img src="{{ asset('user/img/about/about-us.jpg') }}" alt="">
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="blog__item">
-                    <div class="blog__item__pic set-bg" data-setbg="{{ asset('user/img/blog/blog-1.jpg') }}"></div>
-                    <div class="blog__item__text">
-                        <span><img src="{{ asset('user/img/icon/calendar.png') }}" alt=""> 16 February 2020</span>
-                        <h5>What Curling Irons Are The Best Ones</h5>
-                        <a href="#">Read More</a>
-                    </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="about__item">
+                    <h4>Who We Are ?</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, consequatur et quo repellendus
+                        inventore ab ipsa aperiam voluptas similique eveniet odio, suscipit iste cumque eligendi aliquid
+                        laborum tenetur? Repellendus, earum.</p>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="blog__item">
-                    <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-2.jpg"></div>
-                    <div class="blog__item__text">
-                        <span><img src="{{ asset('user/img/icon/calendar.png') }}" alt=""> 21 February 2020</span>
-                        <h5>Eternity Bands Do Last Forever</h5>
-                        <a href="#">Read More</a>
-                    </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="about__item">
+                    <h4>Who We Do ?</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus enim deleniti saepe veniam,
+                        quasi, sed doloremque libero consequatur a tempore nobis magnam aperiam quas ab eum fugit
+                        obcaecati quam atque.</p>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="blog__item">
-                    <div class="blog__item__pic set-bg" data-setbg="{{ asset('user/img/blog/blog-3.jpg') }}"></div>
-                    <div class="blog__item__text">
-                        <span><img src="{{ asset('user/img/icon/calendar.png') }}" alt=""> 28 February 2020</span>
-                        <h5>The Health Benefits Of Sunglasses</h5>
-                        <a href="#">Read More</a>
-                    </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="about__item">
+                    <h4>Why Choose Us</h4>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat corrupti labore reiciendis ab
+                        omnis, rem at neque ducimus consequuntur, tempora ullam consectetur soluta accusamus iure,
+                        officiis laboriosam nesciunt facere cum?</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- Latest Blog Section End -->
+<!-- About Section End -->
+
+<!-- Testimonial Section Begin -->
+<section class="testimonial">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 p-0">
+                <div class="testimonial__text">
+                    <span class="icon_quotations"></span>
+                    <p>“Going out after work? Take your butane curling iron with you to the office, heat it up,
+                        style your hair before you leave the office and you won’t have to make a trip back home.”
+                    </p>
+                    <div class="testimonial__author">
+                        <div class="testimonial__author__pic">
+                            <img src="{{ asset('user/img/about/testimonial-author.jpg') }}" alt="">
+                        </div>
+                        <div class="testimonial__author__text">
+                            <h5>Augusta Schultz</h5>
+                            <p>Fashion Design</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 p-0">
+                <div class="testimonial__pic set-bg" data-setbg="{{ asset('user/img/about/testimonial-pic.jpg') }}">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Testimonial Section End -->
+
+<!-- Counter Section Begin -->
+<section class="counter spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="counter__item">
+                    <div class="counter__item__number">
+                        <h2 class="cn_num">102</h2>
+                    </div>
+                    <span>Our <br />Clients</span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="counter__item">
+                    <div class="counter__item__number">
+                        <h2 class="cn_num">30</h2>
+                    </div>
+                    <span>Total <br />Categories</span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="counter__item">
+                    <div class="counter__item__number">
+                        <h2 class="cn_num">102</h2>
+                    </div>
+                    <span>In <br />Country</span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="counter__item">
+                    <div class="counter__item__number">
+                        <h2 class="cn_num">98</h2>
+                        <strong>%</strong>
+                    </div>
+                    <span>Happy <br />Customer</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Counter Section End -->
+
+<!-- Team Section Begin -->
+<section class="team spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <span>Our Team</span>
+                    <h2>Meet Our Team</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="team__item">
+                    <img src="{{ asset('user/img/about/team-1.jpg') }}" alt="">
+                    <h4>John Smith</h4>
+                    <span>Product Design</span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="team__item">
+                    <img src="{{ asset('user/img/about/team-2.jpg') }}" alt="">
+                    <h4>Christine Wise</h4>
+                    <span>C.E.O</span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="team__item">
+                    <img src="{{ asset('user/img/about/team-3.jpg') }}" alt="">
+                    <h4>Sean Robbins</h4>
+                    <span>Manager</span>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="team__item">
+                    <img src="{{ asset('user/img/about/team-4.jpg') }}" alt="">
+                    <h4>Lucy Myers</h4>
+                    <span>Delivery</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Team Section End -->
 
 @endsection
 

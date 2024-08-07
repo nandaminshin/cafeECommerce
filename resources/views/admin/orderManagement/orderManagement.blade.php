@@ -33,7 +33,7 @@ active open
                             class="fa-solid fa-check"></i>&nbsp;&nbsp;&nbsp; Denied Orders</button>
                 </a>
                 <div class="mt-3 ms-5">
-                    <form action="{{ route('admin#user_management_page') }}" method="get">
+                    <form action="{{ route('admin#order_page') }}" method="get">
                         @csrf
                         <div class="d-flex">
                             <input type="text" name="key" class="form-control" width="160px"
@@ -46,7 +46,7 @@ active open
             </div>
 
             <div class="table-responsive text-nowrap">
-                @if (!count($orders) > 0)
+                @if (!count($data) > 0)
                 <div class="alert alert-primary" role="alert">There is no order here!</div>
                 @else
                 <table class="table">
@@ -61,7 +61,7 @@ active open
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        @foreach ($orders as $item)
+                        @foreach ($data as $item)
                         <tr class="data-row">
                             <td class="max-width-td"><strong>{{ $item->id }}</strong></td>
                             <td class="max-width-td2"><strong>{{ $item->user->name }}</strong></td>
@@ -115,7 +115,7 @@ active open
         </div>
     </div>
 </div>
-{{ $orders->links() }}
+{{ $data->links() }}
 
 @endsection
 
