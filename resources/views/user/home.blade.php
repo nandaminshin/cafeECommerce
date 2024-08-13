@@ -84,7 +84,6 @@ class="active"
 <!-- Banner Section End -->
 
 
-
 <!-- Categories Section Begin -->
 <section class="categories spad">
     <div class="container">
@@ -139,18 +138,18 @@ class="active"
         <div class="row">
             <div class="col-lg-8">
                 <div class="instagram__pic">
-                    <div class="instagram__pic__item set-bg"
-                        data-setbg="{{ asset('user/img/instagram/instagram-1.jpg') }}"></div>
-                    <div class="instagram__pic__item set-bg"
-                        data-setbg="{{ asset('user/img/instagram/instagram-2.jpg') }}"></div>
-                    <div class="instagram__pic__item set-bg"
-                        data-setbg="{{ asset('user/img/instagram/instagram-3.jpg') }}"></div>
-                    <div class="instagram__pic__item set-bg"
-                        data-setbg="{{ asset('user/img/instagram/instagram-4.jpg') }}"></div>
-                    <div class="instagram__pic__item set-bg"
-                        data-setbg="{{ asset('user/img/instagram/instagram-5.jpg') }}"></div>
-                    <div class="instagram__pic__item set-bg"
-                        data-setbg="{{ asset('user/img/instagram/instagram-6.jpg') }}"></div>
+                    <div class="instagram__pic__item set-bg" data-setbg="{{ asset('user/img/coffee_gallary.webp') }}">
+                    </div>
+                    <div class="instagram__pic__item set-bg" data-setbg="{{ asset('user/img/coffee_gallary.webp') }}">
+                    </div>
+                    <div class="instagram__pic__item set-bg" data-setbg="{{ asset('user/img/coffee_gallary.webp') }}">
+                    </div>
+                    <div class="instagram__pic__item set-bg" data-setbg="{{ asset('user/img/coffee_gallary.webp') }}">
+                    </div>
+                    <div class="instagram__pic__item set-bg" data-setbg="{{ asset('user/img/coffee_gallary.webp') }}">
+                    </div>
+                    <div class="instagram__pic__item set-bg" data-setbg="{{ asset('user/img/coffee_gallary.webp') }}">
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -158,7 +157,7 @@ class="active"
                     <h2>Instagram</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                         labore et dolore magna aliqua.</p>
-                    <h3>#Male_Fashion</h3>
+                    <h3>#espresso</h3>
                 </div>
             </div>
         </div>
@@ -169,11 +168,17 @@ class="active"
 <!-- About Section Begin -->
 <section class="about spad">
     <div class="container">
-        <h1 class="mt-2 mb-3">About us</h1>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2>About Us</h2>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-lg-12">
                 <div class="about__pic">
-                    <img src="{{ asset('user/img/about/about-us.jpg') }}" alt="">
+                    <img src="{{ asset('user/img/about_us_wallpaper.webp') }}" alt="">
                 </div>
             </div>
         </div>

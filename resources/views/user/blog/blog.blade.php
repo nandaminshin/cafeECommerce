@@ -11,7 +11,7 @@ class="active"
 @section('content')
 
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-blog set-bg" data-setbg="{{ asset('user/img/breadcrumb-bg.jpg') }}">
+<section class="breadcrumb-blog set-bg" data-setbg="{{ asset('user/img/about_us_wallpaper.webp') }}">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">

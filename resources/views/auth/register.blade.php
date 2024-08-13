@@ -57,7 +57,7 @@
                                     </g>
                                 </svg>
                             </span>
-                            <span class="app-brand-text demo text-body fw-bolder">Sneat</span>
+                            <span class="app-brand-text demo text-body fw-bolder">ESPRESSO</span>
                         </a>
                     </div>
                     <!-- /Logo -->
@@ -93,7 +93,8 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="email" class="form-label">Address</label>
+                            <label for="email" class="form-label">Address <div class="text-muted">Be
+                                    detailed as possible, this address is used for our delivery service. </div></label>
                             <input type="text" class="form-control @error('address') is-invalid @enderror" id="email"
                                 name="address" value="{{ old('address') }}" placeholder="Enter your address" />
                             @error('address')

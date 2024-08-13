@@ -21,7 +21,7 @@ class="active"
                             j, Y g:i A") }}</li>
                         <li>Updated at - {{ \Carbon\Carbon::parse($blog->updated_at)->format("l, F
                             j, Y g:i A") }}</li>
-                        <li>8 Comments</li>
+                        <li>{{ count($comments) }} Comments</li>
                     </ul>
                 </div>
             </div>
@@ -93,7 +93,7 @@ class="active"
                                     </div>
                                     <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-8">
                                         <span class="comment-username">{{ $comment->user->name }}</span>
-                                        @if ($comment->user_id == Auth::user()->id)
+                                        @if (Auth::check() && $comment->user_id == Auth::user()->id)
                                         <form action="{{ route('user#delete_comment', $comment->id) }}" method="post"
                                             class="delete-form"> @csrf </form>
                                         <button class="my-comment"

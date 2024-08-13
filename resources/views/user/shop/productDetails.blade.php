@@ -35,27 +35,6 @@ class="active"
                                 <img src="{{ asset('storage/' . $data->image) }}" alt="" width="auto" height="360px" />
                             </div>
                         </div>
-                        {{--
-                        <div class="tab-pane" id="tabs-2" role="tabpanel">
-                            <div class="product__details__pic__item">
-                                <img src="{{ asset(" user/img/shop-details/product-big-3.png") }}" alt="" />
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="tabs-3" role="tabpanel">
-                            <div class="product__details__pic__item">
-                                <img src="img/shop-details/product-big.png" alt="" />
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="tabs-4" role="tabpanel">
-                            <div class="product__details__pic__item">
-                                <img src="img/shop-details/product-big-4.png" alt="" />
-                                <a href="https://www.youtube.com/watch?v=8PJ3_p7VqHw&list=RD8PJ3_p7VqHw&start_radio=1"
-                                    class="video-popup">
-                                    <i class="fa fa-play"></i>
-                                </a>
-                            </div>
-                        </div>
-                        --}}
                     </div>
                 </div>
             </div>
@@ -67,14 +46,6 @@ class="active"
                 <div class="col-lg-8">
                     <div class="product__details__text">
                         <h2>{{ $data->name }}</h2>
-                        <div class="rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-o"></i>
-                            <span>- 5 Reviews</span>
-                        </div>
                         <h3>
                             {{ $data->price }}
                             {{-- <span>70.00</span> --}}

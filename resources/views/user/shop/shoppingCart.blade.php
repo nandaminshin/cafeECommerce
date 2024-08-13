@@ -63,11 +63,8 @@ class="active"
                             <tr class="item_row" data-id="{{ $cart_item->id }}">
                                 <td class="product__cart__item">
                                     <div class="product__cart__item__pic mt-3">
-                                        <img src="{{ asset(" storage/" . $cart_item->image) }}"
-                                        alt=""
-                                        width="63"
-                                        height="63"
-                                        />
+                                        <img src="{{ asset('storage/' . $cart_item->image) }}" alt="" width="63"
+                                            height="63" />
                                     </div>
                                     <div class="product__cart__item__text">
                                         <h6 class="item_name">

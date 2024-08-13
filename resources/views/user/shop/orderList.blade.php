@@ -103,9 +103,11 @@ class="active"
                                     {{ $order->status }}
                                 </h5>
                             </div>
+                            @if ($order->status != 'confirmed')
                             <button class="site-btn delete-btn">
                                 Delete Order
                             </button>
+                            @endif
                         </div>
                     </form>
                 </div>

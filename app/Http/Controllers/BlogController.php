@@ -118,8 +118,12 @@ class BlogController extends Controller
     public function blogDetailPage($id)
     {
         $blog = Blog::where('id', $id)->first();
-        $comments = Comment::where('blog_id', $blog->id)->with(['blog', 'user'])->orderBy('created_at', 'desc')->get();
-        return view('user.blog.blogDetail', compact('blog', 'comments'));
+        if ($blog) {
+            $comments = Comment::where('blog_id', $blog->id)->with(['blog', 'user'])->orderBy('created_at', 'desc')->get();
+            return view('user.blog.blogDetail', compact('blog', 'comments'));
+        } else {
+            abort(404);
+        }
     }
 
 

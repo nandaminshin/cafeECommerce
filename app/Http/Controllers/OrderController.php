@@ -14,7 +14,7 @@ class OrderController extends Controller
                 $query->whereHas('user', function ($query) {
                     $query->where('name', 'like', '%' . request('key') . '%');
                 });
-            })->orderBy('created_at', 'desc')->paginate(2);
+            })->orderBy('created_at', 'desc')->paginate(10);
         $data->appends(request()->all());
         return view('admin.orderManagement.orderManagement', compact('data'));
     }
@@ -28,7 +28,7 @@ class OrderController extends Controller
                 $query->whereHas('user', function ($query) {
                     $query->where('name', 'like', '%' . request('key') . '%');
                 });
-            })->orderBy('created_at', 'desc')->paginate(2);
+            })->orderBy('created_at', 'desc')->paginate(10);
         $data->appends(request()->all());
         return view('admin.orderManagement.confirmedOrder', compact('data'));
     }
@@ -42,7 +42,7 @@ class OrderController extends Controller
                 $query->whereHas('user', function ($query) {
                     $query->where('name', 'like', '%' . request('key') . '%');
                 });
-            })->orderBy('created_at', 'desc')->paginate(2);
+            })->orderBy('created_at', 'desc')->paginate(10);
         $data->appends(request()->all());
         return view('admin.orderManagement.deniedOrder', compact('data'));
     }
