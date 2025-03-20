@@ -28,10 +28,13 @@ RUN composer install --no-dev --optimize-autoloader --no-scripts
 # Copy the rest of the application files
 COPY . .
 
+# Copy the .env.example to .env (if .env doesn't exist)
+RUN if [ ! -f .env ]; then cp .env.example .env; fi
+
 # Generate the application key
 RUN php artisan key:generate
 
-# Set permissions (if needed)
+# Set permissions for Laravel storage and cache directories
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Expose port 80 (if needed)
