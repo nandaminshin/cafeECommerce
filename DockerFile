@@ -40,7 +40,19 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 # Expose port 80 (for reference, not required for Render)
 EXPOSE 80
 
+# Install Node.js (for asset compilation)
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs
+
+# Install frontend dependencies and build assets
+RUN npm install && npm run build
+
 # Start the application using the PORT environment variable
 CMD ["sh", "-c", "php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"]
 
 RUN php artisan migrate --force
+
+RUN php artisan storage:link && \
+    php artisan config:clear && \
+    php artisan cache:clear && \
+    php artisan view:clear
