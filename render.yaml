@@ -1,0 +1,32 @@
+services:
+  - name: laravel-app
+    type: web
+    env: docker
+    plan: free
+    repo: https://github.com/nandaminshin/cafeECommerce
+    region: oregon
+    branch: main
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_KEY
+        sync: false
+      - key: DB_CONNECTION
+        value: mysql
+      - key: DB_HOST
+        fromService: mysql-db
+      - key: DB_DATABASE
+        value: coffee
+      - key: DB_USERNAME
+        value: root
+      - key: DB_PASSWORD
+        sync: false
+    autoDeploy: true
+
+  - name: mysql-db
+    type: database
+    plan: free
+    databaseName: coffee
+    user: root
+    region: oregon
